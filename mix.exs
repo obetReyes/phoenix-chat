@@ -57,7 +57,9 @@ defmodule Chat.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
-      {:excoveralls, "~> 0.18.3", only: [:test, :dev]}
+      {:excoveralls, "~> 0.18.3", only: [:test, :dev]},
+      {:joken, "~> 2.6"},
+
     ]
   end
 

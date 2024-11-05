@@ -1,6 +1,6 @@
 defmodule ChatWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :chat
-  
+
   socket "/socket", ChatWeb.UserSocket,
       websocket: true,
       longpoll: false
@@ -9,9 +9,12 @@ defmodule ChatWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_chat_key",
-    signing_salt: "pbLjoiw7",
-    same_site: "Lax"
+    key: "user_session",
+    signing_salt: "pbLjoiw7ASz1@D",
+    max_age: nil,
+    secure: true, # Establece la cookie como Secure, se envía solo a través de HTTPS
+    http_only: true,
+    same_site: "Strict"
   ]
 
   # socket "/live", Phoenix.LiveView.Socket,
@@ -45,6 +48,8 @@ defmodule ChatWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
+  plug ChatWeb.ErrorHandler
   plug Plug.Session, @session_options
   plug ChatWeb.Router
+
 end
